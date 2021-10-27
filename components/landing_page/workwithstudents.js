@@ -13,7 +13,7 @@ import {
   WrapItem
 } from "@chakra-ui/react";
 
-export default function Hero({
+export default function WorkWithStudents({
   title,
   subtitle,
   image,
@@ -25,13 +25,21 @@ export default function Hero({
     <Flex
       align="center"
       justify={{ base: "center", md: "space-around", xl: "space-between" }}
-      direction={{ base: "column-reverse", md: "row" }}
+      direction={{ base: "column", md: "row" }}
       wrap="no-wrap"
       minH="70vh"
+      pt={12}
       px={8}
       mb={16}
       {...rest}
     >
+      <Box
+        w={{ base: "80%", sm: "60%", md: "50%" }}
+        mb={{ base: 12, md: 0 }}
+        pl={{ md: 4, lg: 6 }}
+      >
+        <Image src={image} size="100%" rounded="1rem" shadow="2xl" />
+      </Box>
       <Stack
         spacing={4}
         w={{ base: "80%", md: "40%" }}
@@ -39,7 +47,7 @@ export default function Hero({
       >
         <Heading
           as="h1"
-          size="2xl"
+          size="lg"
           fontWeight="bold"
           color="primary.800"
           textAlign={["center", "center", "left", "left"]}
@@ -48,7 +56,7 @@ export default function Hero({
         </Heading>
         <Heading
           as="h2"
-          size="md"
+          size="m"
           color="primary.800"
           opacity="0.8"
           fontWeight="normal"
@@ -63,41 +71,23 @@ export default function Hero({
               <Button
                 colorScheme="blue"
                 borderRadius="8px"
+                variant="outline"
                 py="4"
                 px="4"
                 lineHeight="1"
-                size="md"
+                size="lg"
               >
                 {ctaText}
               </Button>
             </Link>
           </WrapItem>
-          <WrapItem>
-            <Link href={"/about"}>
-              <Button
-                colorScheme="white"
-                color="black"
-                variant="outline"
-                borderRadius="8px"
-                py="4"
-                px="4"
-                lineHeight="1"
-                size="md"
-              >
-                Learn More
-              </Button>
-            </Link>
-          </WrapItem>
         </Wrap>
       </Stack>
-      <Box w={{ base: "80%", sm: "60%", md: "50%" }} mb={{ base: 12, md: 0 }}>
-        <Image src={image} size="100%" rounded="1rem" shadow="2xl" />
-      </Box>
     </Flex>
   );
 }
 
-Hero.propTypes = {
+WorkWithStudents.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   image: PropTypes.string,
@@ -105,11 +95,11 @@ Hero.propTypes = {
   ctaLink: PropTypes.string
 };
 
-Hero.defaultProps = {
-  title: "Bridging the education gap through interactive guidance.",
+WorkWithStudents.defaultProps = {
+  title: "Working with teachers",
   subtitle:
-    "We directly collaborate with teachers and students to maximize their achievement potentials.",
-  image: "/Online Math Class.svg",
-  ctaText: "Join Today",
-  ctaLink: "/signup"
+    "We work with teachers to proactively coordinate presentation times and office hours, and communicate with them to evaluate which students will benefit most from mentorship, writing support, and summer enrichment opportunities.",
+  image: "/process_req.svg",
+  ctaText: "Learn More",
+  ctaLink: "/about"
 };

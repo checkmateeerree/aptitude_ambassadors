@@ -22,9 +22,9 @@ const SummerPrograms = ({programs}) => {
                 >
                     {programs.map((program) => {
                         return (
-                            <WrapItem>
+                            <WrapItem  key={program.name}>
                                 <Box>
-                                    <Stack key={program.name}>
+                                    <Stack>
                                             <Center style={{"width": "200px", "height": "100px", "position": "relative", "margin": "0 auto"}}>
                                                 <Image src={program.logo} alt={program.name + " Logo"} layout='fill'
     objectFit='contain'/>

@@ -8,12 +8,13 @@ import {
   Image,
   Heading,
   Stack,
+  Spacer,
   Text,
   Wrap,
   WrapItem
 } from "@chakra-ui/react";
 
-export default function Hero({
+export default function Mission({
   title,
   subtitle,
   image,
@@ -28,7 +29,10 @@ export default function Hero({
       direction={{ base: "column-reverse", md: "row" }}
       wrap="no-wrap"
       minH="70vh"
-      px={8}
+      width="100%"
+      pt={12}
+      pl={16}
+      pr={0}
       mb={16}
       {...rest}
     >
@@ -39,7 +43,7 @@ export default function Hero({
       >
         <Heading
           as="h1"
-          size="2xl"
+          size="lg"
           fontWeight="bold"
           color="primary.800"
           textAlign={["center", "center", "left", "left"]}
@@ -48,7 +52,7 @@ export default function Hero({
         </Heading>
         <Heading
           as="h2"
-          size="md"
+          size="m"
           color="primary.800"
           opacity="0.8"
           fontWeight="normal"
@@ -63,41 +67,31 @@ export default function Hero({
               <Button
                 colorScheme="blue"
                 borderRadius="8px"
+                variant="outline"
                 py="4"
                 px="4"
                 lineHeight="1"
-                size="md"
+                size="lg"
               >
                 {ctaText}
               </Button>
             </Link>
           </WrapItem>
-          <WrapItem>
-            <Link href={"/about"}>
-              <Button
-                colorScheme="white"
-                color="black"
-                variant="outline"
-                borderRadius="8px"
-                py="4"
-                px="4"
-                lineHeight="1"
-                size="md"
-              >
-                Learn More
-              </Button>
-            </Link>
-          </WrapItem>
         </Wrap>
       </Stack>
-      <Box w={{ base: "80%", sm: "60%", md: "50%" }} mb={{ base: 12, md: 0 }}>
+      <Spacer />
+      <Box
+        ml={5}
+        w={{ base: "80%", sm: "60%", md: "50%" }}
+        mb={{ base: 12, md: 0 }}
+      >
         <Image src={image} size="100%" rounded="1rem" shadow="2xl" />
       </Box>
     </Flex>
   );
 }
 
-Hero.propTypes = {
+Mission.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   image: PropTypes.string,
@@ -105,11 +99,11 @@ Hero.propTypes = {
   ctaLink: PropTypes.string
 };
 
-Hero.defaultProps = {
-  title: "Bridging the education gap through interactive guidance.",
+Mission.defaultProps = {
+  title: "Our Mission",
   subtitle:
-    "We directly collaborate with teachers and students to maximize their achievement potentials.",
-  image: "/Online Math Class.svg",
-  ctaText: "Join Today",
-  ctaLink: "/signup"
+    "We are strengthening the pipeline that identifies high-potential underrepresented students in humanities and STEM by providing specific opportunities to develop their interests, preparing them to traverse the world in a country with a massively broken education system. ",
+  image: "/process_req.svg",
+  ctaText: "Learn More",
+  ctaLink: "/about"
 };
