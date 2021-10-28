@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Box, Flex, Text, Button, Heading} from "@chakra-ui/react";
-
+import { Box, Flex, Text, Button, Heading } from "@chakra-ui/react";
 
 const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
   return (
@@ -58,7 +57,9 @@ export default function Navbar() {
       color={["black", "black", "primary.700", "primary.700"]}
     >
       <Flex align="center">
-        <Heading size="m">Aptitude Ambassadors</Heading>
+        <Heading size="md">
+          <Link href="/">Aptitude Amplifiers</Link>
+        </Heading>
       </Flex>
 
       <Box display={{ base: "block", md: "none" }} onClick={toggleMenu}>
@@ -96,5 +97,4 @@ export default function Navbar() {
       </Box>
     </Flex>
   );
-};
-
+}

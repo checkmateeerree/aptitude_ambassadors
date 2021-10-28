@@ -28,8 +28,7 @@ export default function WorkWithTeachers({
       direction={{ base: "column", md: "row" }}
       wrap="no-wrap"
       minH="70vh"
-      py={12}
-      bgColor="#F5F5F5"
+      pt={12}
       px={8}
       mb={16}
       {...rest}
