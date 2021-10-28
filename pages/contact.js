@@ -19,30 +19,37 @@ import {
 } from "@chakra-ui/react";
 import { PhoneIcon, EmailIcon } from "@chakra-ui/icons";
 import { FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { Fade, ScaleFade, Slide, SlideFade } from "@chakra-ui/react";
+
+const MotionFlex = motion(Flex);
+const MotionWrapItem = motion(WrapItem);
 
 export default function ContactUs() {
   return (
-    <Flex justify="center" pb="60px">
+    <MotionFlex justify="center" pb="60px">
       <Wrap
         direction={{ base: "column", md: "row", lg: "row" }}
         spacing={{ base: "30px", md: "150px", lg: "200px" }}
       >
-        <WrapItem>
-          <Stack spacing="30px">
-            <Heading size="md">Leave us a Message</Heading>
-            <FormControl id="name">
-              <Input width="300px" type="name" placeholder="Your Name" />
-            </FormControl>
-            <FormControl id="email">
-              <Input type="email" placeholder="Your Email" />
-              <FormHelperText>We'll never share your email.</FormHelperText>
-            </FormControl>
-            <FormControl id="message">
-              <Textarea placeholder="Your Message" />
-            </FormControl>
-            <Button colorScheme="teal">Send Message</Button>
-          </Stack>
-        </WrapItem>
+        <MotionWrapItem>
+          <Fade in>
+            <Stack spacing="30px">
+              <Heading size="md">Leave us a Message</Heading>
+              <FormControl id="name">
+                <Input width="300px" type="name" placeholder="Your Name" />
+              </FormControl>
+              <FormControl id="email">
+                <Input type="email" placeholder="Your Email" />
+                <FormHelperText>We'll never share your email.</FormHelperText>
+              </FormControl>
+              <FormControl id="message">
+                <Textarea placeholder="Your Message" />
+              </FormControl>
+              <Button colorScheme="teal">Send Message</Button>
+            </Stack>
+          </Fade>
+        </MotionWrapItem>
         <WrapItem>
           <Stack
             display={{ base: "none", md: "initial" }}
@@ -66,6 +73,6 @@ export default function ContactUs() {
           </Stack>
         </WrapItem>
       </Wrap>
-    </Flex>
+    </MotionFlex>
   );
 }
