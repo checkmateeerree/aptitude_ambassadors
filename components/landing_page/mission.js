@@ -8,7 +8,6 @@ import {
   Image,
   Heading,
   Stack,
-  Spacer,
   Text,
   Wrap,
   WrapItem
@@ -26,16 +25,22 @@ export default function Mission({
     <Flex
       align="center"
       justify={{ base: "center", md: "space-around", xl: "space-between" }}
-      direction={{ base: "column-reverse", md: "row" }}
+      direction={{ base: "column", md: "row-reverse", lg: 'row-reverse' }}
       wrap="no-wrap"
       minH="70vh"
-      width="100%"
       pt={12}
-      pl={16}
+      pl={{md: 5, lg: "125px"}}
       pr={0}
       mb={16}
       {...rest}
     >
+      <Box
+        w={{ base: "80%", sm: "60%", md: "50%" }}
+        mb={{ base: 12, md: 0 }}
+        pl={{ md: 4, lg: 6 }}
+      >
+        <Image src={image} size="100%" rounded="1rem" shadow="2xl" />
+      </Box>
       <Stack
         spacing={4}
         w={{ base: "80%", md: "40%" }}
@@ -79,14 +84,6 @@ export default function Mission({
           </WrapItem>
         </Wrap>
       </Stack>
-      <Spacer />
-      <Box
-        ml={5}
-        w={{ base: "80%", sm: "60%", md: "50%" }}
-        mb={{ base: 12, md: 0 }}
-      >
-        <Image src={image} size="100%" rounded="1rem" shadow="2xl" />
-      </Box>
     </Flex>
   );
 }
@@ -100,9 +97,9 @@ Mission.propTypes = {
 };
 
 Mission.defaultProps = {
-  title: "Our Mission",
+  title: "Our mission",
   subtitle:
-    "We are strengthening the pipeline that identifies high-potential underrepresented students in humanities and STEM by providing specific opportunities to develop their interests, preparing them to traverse the world in a country with a massively broken education system. ",
+    "We are strengthening the pipeline that identifies high-potential underrepresented students in humanities and STEM by providing specific opportunities to develop their interests, preparing them to traverse the world in a country with a massively broken education system.",
   image: "/process_req.svg",
   ctaText: "Learn More",
   ctaLink: "/about"

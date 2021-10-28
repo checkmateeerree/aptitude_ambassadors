@@ -13,7 +13,7 @@ import {
   WrapItem
 } from "@chakra-ui/react";
 
-export default function WorkWithStudents({
+export default function WorkWithTeachers({
   title,
   subtitle,
   image,
@@ -28,7 +28,8 @@ export default function WorkWithStudents({
       direction={{ base: "column", md: "row" }}
       wrap="no-wrap"
       minH="70vh"
-      pt={12}
+      py={12}
+      bgColor="#F5F5F5"
       px={8}
       mb={16}
       {...rest}
@@ -87,7 +88,7 @@ export default function WorkWithStudents({
   );
 }
 
-WorkWithStudents.propTypes = {
+WorkWithTeachers.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   image: PropTypes.string,
@@ -95,7 +96,7 @@ WorkWithStudents.propTypes = {
   ctaLink: PropTypes.string
 };
 
-WorkWithStudents.defaultProps = {
+WorkWithTeachers.defaultProps = {
   title: "Working with teachers",
   subtitle:
     "We work with teachers to proactively coordinate presentation times and office hours, and communicate with them to evaluate which students will benefit most from mentorship, writing support, and summer enrichment opportunities.",
