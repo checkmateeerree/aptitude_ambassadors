@@ -6,7 +6,7 @@ function Layout({ children }) {
   return (
     <div style={{"overflow": "hidden"}}>
       <Navbar/>
-        <Box >
+        <Box pt="150px">
           {children}
         </Box>
       <Footer />

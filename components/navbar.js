@@ -46,9 +46,11 @@ export default function Navbar() {
     <Flex
       as="nav"
       align="center"
+      position="fixed"
       justify="space-between"
       wrap="wrap"
       w="100%"
+      zIndex="1000"
       mb={8}
       p={8}
       shadow="base"
