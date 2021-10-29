@@ -4,7 +4,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Box, Flex, Text, Button, Heading, Menu, Center, MenuButton, MenuList, MenuItem} from "@chakra-ui/react";
 
 
-const MenuIt = ({ children, isLast, isMenu=false, to = "/", ...rest }) => {
+const MenuIt = ({ children, isLast, to = "/", ...rest }) => {
   return (
     <Text
       mb={{ base: isLast ? 0 : 8, sm: 8, md: 0 }}
