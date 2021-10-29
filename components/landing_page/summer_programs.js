@@ -50,7 +50,7 @@ const SummerPrograms = ({ programs }) => {
       </Wrap>
       <Center>
         <Link href="programs">
-          <Button size="lg">More Programs</Button>
+          <Button size="lg" variant="outline" colorScheme="teal">More Programs</Button>
         </Link>
       </Center>
     </Stack>

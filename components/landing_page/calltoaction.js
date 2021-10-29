@@ -1,5 +1,6 @@
 import { Flex, Text, Wrap, WrapItem } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/react";
+import Link from "next/link"
 import React from "react";
 
 export default function CallToAction() {
@@ -19,7 +20,9 @@ export default function CallToAction() {
             px="4"
             lineHeight="1"
           >
-            Join Today
+            <Link href="/register">
+                Join Today  
+            </Link>
           </Button>
         </WrapItem>
         <WrapItem>
@@ -32,7 +35,9 @@ export default function CallToAction() {
             size="sm"
             lineHeight="1"
           >
-            Contact Us
+            <Link href="/contact">
+                Contact Us 
+            </Link>
           </Button>
         </WrapItem>
       </Wrap>

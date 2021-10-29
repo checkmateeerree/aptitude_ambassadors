@@ -1,14 +1,16 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, ScaleFade, SlideFade } from "@chakra-ui/react";
 import Layout from "../components/layout";
 import "bootstrap/dist/css/bootstrap.css";
 import { AnimateSharedLayout } from "framer-motion";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, router }) {
   return (
     <ChakraProvider>
       <AnimateSharedLayout>
         <Layout>
-          <Component {...pageProps} />
+            <ScaleFade in="true" key={router.route}>
+              <Component {...pageProps} />
+            </ScaleFade>
         </Layout>
       </AnimateSharedLayout>
     </ChakraProvider>
