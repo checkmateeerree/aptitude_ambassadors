@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Box, Flex, Text, Button, Heading, Menu, Center, MenuButton, MenuList, MenuItem as MenuIt} from "@chakra-ui/react";
+import { Box, Flex, Text, Button, Heading, Menu, Center, MenuButton, MenuList, MenuItem} from "@chakra-ui/react";
 
 
-const MenuItem = ({ children, isLast, isMenu=false, to = "/", ...rest }) => {
+const MenuIt = ({ children, isLast, isMenu=false, to = "/", ...rest }) => {
   return (
     <Text
       mb={{ base: isLast ? 0 : 8, sm: 8, md: 0 }}
@@ -78,29 +78,29 @@ export default function Navbar() {
           direction={["column", "column", "row", "row"]}
           pt={[4, 4, 0, 0]}
         >
-          <MenuItem to="/">Home</MenuItem>
-          <MenuItem to="/about">About</MenuItem>
-          <MenuItem to="/contact">Contact Us</MenuItem>
-          <MenuItem>
+          <MenuIt to="/">Home</MenuIt>
+          <MenuIt to="/about">About</MenuIt>
+          <MenuIt to="/contact">Contact Us</MenuIt>
+          <MenuIt>
             <Menu>
               <MenuButton>
                 Resources <ChevronDownIcon />
               </MenuButton>
               <MenuList>
                 <Link href="/resources/programs">
-                  <MenuIt>
+                  <MenuItem>
                     Programs
-                  </MenuIt>
+                  </MenuItem>
                 </Link>
                 <Link href="/resources/essays">
-                  <MenuIt>Sample Essays</MenuIt>
+                  <MenuItem>Sample Essays</MenuItem>
                 </Link>
               </MenuList>
             </Menu>
-          </MenuItem>
-          <MenuItem to="/login">Log in</MenuItem>
+          </MenuIt>
+          <MenuIt to="/login">Log in</MenuIt>
           <Center>
-          <MenuItem to="/register" isLast>
+          <MenuIt to="/register" isLast>
             <Button
               size="sm"
               rounded="md"
@@ -109,7 +109,7 @@ export default function Navbar() {
             >
               Create Account
             </Button>
-          </MenuItem>
+          </MenuIt>
           </Center>
         </Flex>
       </Box>
