@@ -99,7 +99,7 @@ export default function Navbar() {
             </Menu>
           </MenuIt>
           <MenuIt to="/login">Log in</MenuIt>
-          <MenuIt to="/register" isLast>
+          <MenuIt to="/register">
             <Button
               size="sm"
               rounded="md"
