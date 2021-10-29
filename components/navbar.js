@@ -99,7 +99,6 @@ export default function Navbar() {
             </Menu>
           </MenuIt>
           <MenuIt to="/login">Log in</MenuIt>
-          <Center>
           <MenuIt to="/register" isLast>
             <Button
               size="sm"
@@ -110,7 +109,6 @@ export default function Navbar() {
               Create Account
             </Button>
           </MenuIt>
-          </Center>
         </Flex>
       </Box>
     </Flex>
