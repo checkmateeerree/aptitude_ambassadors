@@ -8,7 +8,7 @@ const MenuIt = ({ children, isLast, isMenu=false, to = "/", ...rest }) => {
   return (
     <Text
       mb={{ base: isLast ? 0 : 8, sm: 8, md: 0 }}
-      mr={{ base: 0, md: isLast ? 0 : 12 }}
+      mr={{ base: isLast ? 0 : 12 }}
       display="block"
       {...rest}
     >
@@ -98,8 +98,8 @@ export default function Navbar() {
               </MenuList>
             </Menu>
           </MenuIt>
-          <MenuIt to="/login" isLast>Log in</MenuIt>
-          <MenuIt to="/register" isLast ml={8}>
+          <MenuIt to="/login">Log in</MenuIt>
+          <MenuIt to="/register" isLast>
             <Button
               size="sm"
               rounded="md"
