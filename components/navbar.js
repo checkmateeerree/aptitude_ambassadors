@@ -100,7 +100,7 @@ export default function Navbar() {
             </Menu>
           </Flex>
           <MenuIt to="/login">Log in</MenuIt>
-          <MenuIt to="/register" isLast ml={8}>
+          <MenuIt to="/register" isLast>
             <Button
               size="sm"
               rounded="md"
