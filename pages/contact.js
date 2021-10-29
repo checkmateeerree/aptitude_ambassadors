@@ -5,7 +5,8 @@ import {
   Text,
   Center,
   Stack,
-  Heading
+  Heading,
+  Box
 } from "@chakra-ui/layout";
 import {
   FormControl,
@@ -28,10 +29,12 @@ const MotionWrapItem = motion(WrapItem);
 export default function ContactUs() {
   return (
     <MotionFlex justify="center" pb="60px">
+      <Box width={{lg: "850px"}} shadow="2xl" rounded="1rem" p="40px 50px">
       <Wrap
         direction={{ base: "column", md: "row", lg: "row" }}
         spacing={{ base: "30px", md: "150px", lg: "200px" }}
       >
+      
         <MotionWrapItem>
           <Fade in>
             <Stack spacing="30px">
@@ -73,6 +76,7 @@ export default function ContactUs() {
           </Stack>
         </WrapItem>
       </Wrap>
+      </Box>
     </MotionFlex>
   );
 }
