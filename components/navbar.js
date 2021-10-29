@@ -81,7 +81,8 @@ export default function Navbar() {
           <MenuIt to="/">Home</MenuIt>
           <MenuIt to="/about">About</MenuIt>
           <MenuIt to="/contact">Contact Us</MenuIt>
-          <div style={{"marginRight": "3em"}}>
+          <Flex mb={{ base: 8, sm: 8, md: 0 }}
+            mr={{ base: 0, md: 12 }}>
             <Menu>
               <MenuButton>
                 Resources <ChevronDownIcon />
@@ -97,7 +98,7 @@ export default function Navbar() {
                 </Link>
               </MenuList>
             </Menu>
-          </div>
+          </Flex>
           <MenuIt to="/login">Log in</MenuIt>
           <MenuIt to="/register" isLast ml={8}>
             <Button
