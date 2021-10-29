@@ -99,7 +99,7 @@ WorkWithTeachers.defaultProps = {
   title: "Working with teachers",
   subtitle:
     "We work with teachers to proactively coordinate presentation times and office hours, and communicate with them to evaluate which students will benefit most from mentorship, writing support, and summer enrichment opportunities.",
-  image: "/process_req.svg",
+  image: "/svgs/process_req.svg",
   ctaText: "Learn More",
   ctaLink: "/about"
 };

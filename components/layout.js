@@ -8,7 +8,7 @@ function Layout({ children }) {
     <div style={{ overflow: "hidden" }}>
       <Navbar />
 
-        <Box pt="150px">{children}</Box>
+        <Box pt="150px" bgColor="white">{children}</Box>
 
       <Footer />
     </div>

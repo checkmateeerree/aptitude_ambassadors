@@ -100,7 +100,7 @@ WorkingWithStudents.defaultProps = {
   title: "Working with students",
   subtitle:
     "We hold one to one meetings with students to assess their personalities, interests, activities, and academics. In addition, we identify particular opportunities (e.g. competitions or summer programs) that would appeal to their interests, and support their application process as writing coaches.",
-  image: "/process_req.svg",
+  image: "/svgs/process_req.svg",
   ctaText: "Learn More",
   ctaLink: "/about"
 };

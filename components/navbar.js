@@ -1,12 +1,14 @@
 import React from "react";
 import Link from "next/link";
-import { Box, Flex, Text, Button, Heading } from "@chakra-ui/react";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import { Box, Flex, Text, Button, Heading, Menu, Center, MenuButton, MenuList, MenuItem as MenuIt} from "@chakra-ui/react";
 
-const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
+
+const MenuItem = ({ children, isLast, isMenu=false, to = "/", ...rest }) => {
   return (
     <Text
-      mb={{ base: isLast ? 0 : 8, sm: 0 }}
-      mr={{ base: 0, sm: isLast ? 0 : 8 }}
+      mb={{ base: isLast ? 0 : 8, sm: 8, md: 0 }}
+      mr={{ base: 0, md: isLast ? 0 : 12 }}
       display="block"
       {...rest}
     >
@@ -62,37 +64,53 @@ export default function Navbar() {
         </Heading>
       </Flex>
 
-      <Box display={{ base: "block", md: "none" }} onClick={toggleMenu}>
+      <Box display={{ base: "block", lg: "none" }} onClick={toggleMenu}>
         {show ? <CloseIcon /> : <MenuIcon />}
       </Box>
 
       <Box
-        display={{ base: show ? "block" : "none", md: "block" }}
+        display={{ base: show ? "block" : "none", lg: "block" }}
         flexBasis={{ base: "100%", md: "auto" }}
       >
         <Flex
           align="center"
-          justify={["center", "space-between", "flex-end", "flex-end"]}
-          direction={["column", "row", "row", "row"]}
+          justify={["center", "center", "flex-end", "flex-end"]}
+          direction={["column", "column", "row", "row"]}
           pt={[4, 4, 0, 0]}
         >
           <MenuItem to="/">Home</MenuItem>
           <MenuItem to="/about">About</MenuItem>
           <MenuItem to="/contact">Contact Us</MenuItem>
+          <MenuItem>
+            <Menu>
+              <MenuButton>
+                Resources <ChevronDownIcon />
+              </MenuButton>
+              <MenuList>
+                <Link href="/resources/programs">
+                  <MenuIt>
+                    Programs
+                  </MenuIt>
+                </Link>
+                <Link href="/resources/essays">
+                  <MenuIt>Sample Essays</MenuIt>
+                </Link>
+              </MenuList>
+            </Menu>
+          </MenuItem>
           <MenuItem to="/login">Log in</MenuItem>
-          <MenuItem to="/signup" isLast>
+          <Center>
+          <MenuItem to="/register" isLast>
             <Button
               size="sm"
               rounded="md"
-              color={["blue", "blue", "blue", "blue"]}
-              bg={["white", "white", "primary.500", "primary.500"]}
-              _hover={{
-                bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
-              }}
+              colorScheme="blue"
+              variant="outline"
             >
               Create Account
             </Button>
           </MenuItem>
+          </Center>
         </Flex>
       </Box>
     </Flex>

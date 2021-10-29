@@ -11,7 +11,6 @@ import {
   Wrap,
   WrapItem
 } from "@chakra-ui/react";
-import { Fade, ScaleFade, Slide, SlideFade } from "@chakra-ui/react";
 
 export default function Hero({
   title,
@@ -19,6 +18,8 @@ export default function Hero({
   image,
   ctaLink,
   ctaText,
+  secondText,
+  secondLink,
   ...rest
 }) {
   return (
@@ -73,10 +74,9 @@ export default function Hero({
             </Link>
           </WrapItem>
           <WrapItem>
-            <Link href={"/about"}>
+            <Link href={secondLink}>
               <Button
-                colorScheme="white"
-                color="black"
+                colorScheme="green"
                 variant="outline"
                 borderRadius="8px"
                 py="4"
@@ -84,7 +84,7 @@ export default function Hero({
                 lineHeight="1"
                 size="md"
               >
-                Learn More
+                {secondText}
               </Button>
             </Link>
           </WrapItem>
@@ -102,14 +102,18 @@ Hero.propTypes = {
   subtitle: PropTypes.string,
   image: PropTypes.string,
   ctaText: PropTypes.string,
-  ctaLink: PropTypes.string
+  ctaLink: PropTypes.string,
+  secondText: PropTypes.string,
+  secondLink : PropTypes.string
 };
 
 Hero.defaultProps = {
   title: "Bridging the education gap through interactive guidance.",
   subtitle:
     "We directly collaborate with teachers and students to maximize their achievement potentials.",
-  image: "/Online Math Class.svg",
+  image: "/svgs/Online Math Class.svg",
   ctaText: "Join Today",
-  ctaLink: "/signup"
+  ctaLink: "/register",
+  secondText: "Learn More",
+  secondLink: "/about"
 };

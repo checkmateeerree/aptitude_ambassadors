@@ -13,7 +13,7 @@ import Link from "next/link";
 import Image from "next/image";
 import PropTypes from "prop-types";
 
-const SummerPrograms = ({ programs }) => {
+const SummerPrograms = ({ programs, moreProgramsLink }) => {
   return (
     <Stack bgColor="rgba(74, 153, 211, 0.2)" py="10" spacing="10">
       <Center>
@@ -49,7 +49,7 @@ const SummerPrograms = ({ programs }) => {
         })}
       </Wrap>
       <Center>
-        <Link href="programs">
+        <Link href={moreProgramsLink}>
           <Button size="lg" variant="outline" colorScheme="teal">More Programs</Button>
         </Link>
       </Center>
@@ -60,7 +60,8 @@ const SummerPrograms = ({ programs }) => {
 export default SummerPrograms;
 
 SummerPrograms.propTypes = {
-  programs: PropTypes.array
+  programs: PropTypes.array,
+  moreProgramsLink: PropTypes.string
 };
 
 SummerPrograms.defaultProps = {
@@ -74,5 +75,6 @@ SummerPrograms.defaultProps = {
     },
     { name: "MIT MOSTEC", logo: "/mostec-logo.png" },
     { name: "Hi-Step", logo: "/office_of_intramural.png" }
-  ]
+  ],
+  moreProgramsLink: "/resources/programs"
 };

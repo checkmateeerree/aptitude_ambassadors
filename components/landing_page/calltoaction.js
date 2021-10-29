@@ -1,22 +1,23 @@
-import { Flex, Text, Wrap, WrapItem } from "@chakra-ui/layout";
+import { Flex, Text, Wrap, WrapItem, Stack } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/react";
 import Link from "next/link"
 import React from "react";
 
 export default function CallToAction() {
   return (
-    <Flex bgColor="#F5F5F5" px={8} py={16} justify="center" spacing="30px">
-      <Text fontSize={{ lg: "2xl", base: "md" }} my="auto">
-        Sign up to our website to access our online resources and features!
-      </Text>
-      <Wrap my="auto" pl="10">
-        <WrapItem spacing="15px">
+    <Flex bgColor="#F5F5F5" px={4} py={16} justify="center">
+        <Stack>
+        <Text fontSize={{ base: "md", md: "xl", lg: "2xl" }} my="auto" fontWeight="medium">
+            Sign up to our website to access our online resources and features!
+        </Text>
+    
+        <Wrap my="auto" spacing="12px" justify="center">
+        <WrapItem>
           <Button
             colorScheme="blue"
             borderRadius="8px"
             variant="outline"
             py="4"
-            size="sm"
             px="4"
             lineHeight="1"
           >
@@ -32,7 +33,6 @@ export default function CallToAction() {
             variant="outline"
             py="4"
             px="4"
-            size="sm"
             lineHeight="1"
           >
             <Link href="/contact">
@@ -41,6 +41,7 @@ export default function CallToAction() {
           </Button>
         </WrapItem>
       </Wrap>
+      </Stack>
     </Flex>
   );
 }
