@@ -20,10 +20,57 @@ import {
 } from "@chakra-ui/react";
 import {Fade} from "@chakra-ui/react";
 import Link from "next/link"
-
+import {useState} from 'react'
+import axios from 'axios'
+import { useToast } from "@chakra-ui/toast";
 
 
 export default function Register() {
+  const toast = useToast();
+
+  const createToast = (title, description, status) => {
+      toast({
+        title: title,
+        description: description,
+        status: status,
+        duration: 5000,
+        isClosable: true
+      })
+  }
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+
+  const handleEmailChange = ({target}) => {
+    setEmail(target.value)
+  }
+  const handlePasswordChange = ({target}) => {
+    setPassword(target.value)
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      const res = await axios.post('/api/auth/register', {
+        email: email,
+        password: password,
+      }
+    );
+    createToast("Registration succeeded!", "Your account has been created", "success")
+    }
+    catch (error) {
+      console.log(error)
+      if (error.response.status === 422){
+        createToast("Registration failed.", "The email address you entered already exists.", "error");
+      }
+      else if (error.response.status === 423){
+        createToast("Registration failed.", "Please enter all of the required fields", "error")
+      }
+      else if (error.response.status === 500){
+        createToast("Registration failed.", "Please try again later", "error")
+      }
+    }
+   
+  }
   return (
     <Flex justify="center" pb="60px" >
         <Fade in>
@@ -34,15 +81,15 @@ export default function Register() {
               <FormLabel>
                 Email
               </FormLabel>
-              <Input type="email" placeholder="Your Email" required/>
+              <Input type="email" placeholder="Your Email" required onChange={handleEmailChange}/>
             </FormControl>
             <FormControl id="password">
               <FormLabel>
                 Password
               </FormLabel>
-              <Input type="password" placeholder="Your Password" required/>
+              <Input type="password" placeholder="Your Password" required onChange={handlePasswordChange}/>
             </FormControl>
-            <Button colorScheme="blue">Create New Account</Button>
+            <Button colorScheme="blue" onClick={handleSubmit}>Create New Account</Button>
           </Stack>
           <Stack spacing="8px" mt="14px">
           <Center>

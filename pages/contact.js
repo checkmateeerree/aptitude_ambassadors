@@ -1,58 +1,105 @@
+import { useState } from "react";
+import axios from 'axios'
+
 import {
   Flex,
   Wrap,
   WrapItem,
   Text,
-  Center,
   Stack,
   Heading,
-  Box
+  Box,
+  Center
 } from "@chakra-ui/layout";
 import {
   FormControl,
-  FormLabel,
   Input,
   Textarea,
   FormErrorMessage,
   Button,
   FormHelperText,
-  IconButton
+  IconButton,
+  useToast
 } from "@chakra-ui/react";
-import { PhoneIcon, EmailIcon } from "@chakra-ui/icons";
+import { PhoneIcon, EmailIcon} from "@chakra-ui/icons";
 import { FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
-import { motion } from "framer-motion";
-import { Fade, ScaleFade, Slide, SlideFade } from "@chakra-ui/react";
-
-const MotionFlex = motion(Flex);
-const MotionWrapItem = motion(WrapItem);
+import { Fade } from "@chakra-ui/react";
 
 export default function ContactUs() {
+  const toast = useToast()
+
+  const createToast = (title, description, status) => {
+    toast({
+      title: title,
+      description: description,
+      status: status,
+      duration: 5000,
+      isClosable: true
+    })
+  }
+
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [message, setMessage] = useState();
+
+  const emailValidation = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  }
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  }
+  const handleMessageChange = (event) => {
+    setMessage(event.target.value);
+  }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!email || !name || !message){
+      createToast("Contact Form Failed", "Please fill out all of the required fields", "error")
+    }
+    else if (!emailValidation.test(String(email).toLowerCase())) {
+      createToast("Contact Form Failed", "The email entered is invalid", "error")
+    }
+    try {
+      const res = await axios.post("/api/sendemail", {name, email, message})
+      createToast("Message Sent!", "Your message has successfully sended", "success")
+    }
+    catch (error) {
+      console.log(error);
+      createToast("Contact Form Failed", "Something went wrong, try again later.", "error")
+      return
+    }
+
+  }
+
   return (
-    <MotionFlex justify="center" pb="60px">
+    <Stack>
+    <Flex justify="center" pb="60px">
       <Box width={{lg: "850px"}} shadow="2xl" rounded="1rem" p="40px 50px">
       <Wrap
         direction={{ base: "column", md: "row", lg: "row" }}
         spacing={{ base: "30px", md: "150px", lg: "200px" }}
       >
       
-        <MotionWrapItem>
+        <WrapItem>
           <Fade in>
             <Stack spacing="30px">
               <Heading size="md">Leave us a Message</Heading>
               <FormControl id="name">
-                <Input width="300px" type="name" placeholder="Your Name" />
+                <Input width="300px" type="name" placeholder="Your Name" onChange={handleNameChange} required/>
               </FormControl>
               <FormControl id="email">
-                <Input type="email" placeholder="Your Email" />
+                <Input type="email" placeholder="Your Email" onChange={handleEmailChange} required/>
                 <FormHelperText>We'll never share your email.</FormHelperText>
               </FormControl>
               <FormControl id="message">
-                <Textarea placeholder="Your Message" />
+                <Textarea placeholder="Your Message" onChange={handleMessageChange} required/>
               </FormControl>
-              <Button colorScheme="teal">Send Message</Button>
+              <Button colorScheme="teal" onClick={handleSubmit}>Send Message</Button>
             </Stack>
           </Fade>
-        </MotionWrapItem>
+        </WrapItem>
         <WrapItem>
           <Stack
             display={{ base: "none", md: "initial" }}
@@ -77,6 +124,7 @@ export default function ContactUs() {
         </WrapItem>
       </Wrap>
       </Box>
-    </MotionFlex>
+    </Flex>
+    </Stack>
   );
 }

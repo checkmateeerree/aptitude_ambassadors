@@ -13,12 +13,18 @@
     "@chakra-ui/react": "^1.6.10",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "axios": "^0.24.0",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^5.0.0-beta3",
     "framer-motion": "^4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.12",
     "next": "11.1.2",
+    "next-auth": "^3.29.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.3.1",
+    "sendgrid": "^5.2.3",
     "yarn": "^1.22.17"
   },
   "devDependencies": {
