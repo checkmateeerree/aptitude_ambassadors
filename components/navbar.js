@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { useSession } from 'next-auth/client';
+import { signOut, useSession } from 'next-auth/client';
 import { Box, Flex, Text, Button, Heading, Menu, Center, MenuButton, MenuList, MenuItem} from "@chakra-ui/react";
 
 
@@ -44,8 +44,7 @@ export default function Navbar() {
   const [show, setShow] = React.useState(false);
   const toggleMenu = () => setShow(!show);
   const [session, loading] = useSession()
-  
-  console.log(session)
+
   return (
     <Flex
       as="nav"
@@ -102,17 +101,35 @@ export default function Navbar() {
               </MenuList>
             </Menu>
           </Flex>
-          <MenuIt to="/login">Log in</MenuIt>
-          <MenuIt to="/register" isLast>
-            <Button
-              size="sm"
-              rounded="md"
-              colorScheme="blue"
-              variant="outline"
-            >
-              Create Account
-            </Button>
-          </MenuIt>
+          {
+            session && (
+              <Button
+                size="sm"
+                rounded="md"
+                colorScheme="blue"
+                variant="outline"
+                onClick={signOut}
+              >
+                Logout
+              </Button>
+            )
+          }
+          {!session && !loading && (
+            <>
+            <MenuIt to="/login">Log in</MenuIt>
+            <MenuIt to="/register" isLast>
+              <Button
+                size="sm"
+                rounded="md"
+                colorScheme="blue"
+                variant="outline"
+              >
+                Create Account
+              </Button>
+            </MenuIt>
+            </>
+            )
+          }
         </Flex>
       </Box>
     </Flex>

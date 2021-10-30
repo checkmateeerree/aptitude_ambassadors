@@ -18,8 +18,10 @@ import {
 import {Fade} from "@chakra-ui/react";
 import Link from "next/link"
 import { signIn } from 'next-auth/client';
-import {useState} from "react"
 import {useToast} from '@chakra-ui/react'
+import { useRouter } from 'next/router';
+import { getSession } from 'next-auth/client';
+import {useEffect, useState} from 'react'
 
 export default function Login() {
   const toast = useToast();
@@ -59,10 +61,25 @@ export default function Login() {
     } else {
       createToast(
         "Login succeeded!",
-      )
+      ) 
+      router.replace("/")
     }
-    console.log(status);
   }
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+    useEffect(() => {
+        getSession().then((session) => {
+            if (session) {
+                router.replace('/');
+            } else {
+                setLoading(false);
+            }
+        });
+    }, []);
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
   return (
     <Flex justify="center" pb="60px" >
         <Fade in>

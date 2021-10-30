@@ -20,12 +20,29 @@ import {
 } from "@chakra-ui/react";
 import {Fade} from "@chakra-ui/react";
 import Link from "next/link"
-import {useState} from 'react'
 import axios from 'axios'
 import { useToast } from "@chakra-ui/toast";
+import { useRouter } from 'next/router';
+import { getSession } from 'next-auth/client';
+import {useEffect, useState} from 'react'
 
 
 export default function Register() {
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+    useEffect(() => {
+        getSession().then((session) => {
+            if (session) {
+                router.replace('/');
+            } else {
+                setLoading(false);
+            }
+        });
+    }, []);
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
   const toast = useToast();
 
   const createToast = (title, description, status) => {
