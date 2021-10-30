@@ -28,21 +28,6 @@ import {useEffect, useState} from 'react'
 
 
 export default function Register() {
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
-    useEffect(() => {
-        getSession().then((session) => {
-            if (session) {
-                router.replace('/');
-            } else {
-                setLoading(false);
-            }
-        });
-    }, []);
-    if (loading) {
-        return <p>Loading...</p>;
-    }
-
   const toast = useToast();
 
   const createToast = (title, description, status) => {
@@ -72,7 +57,8 @@ export default function Register() {
         password: password,
       }
     );
-    createToast("Registration succeeded!", "Your account has been created", "success")
+      createToast("Registration succeeded!", "Your account has been created", "success")
+      router.replace("/login");
     }
     catch (error) {
       console.log(error)
@@ -86,8 +72,21 @@ export default function Register() {
         createToast("Registration failed.", "Please try again later", "error")
       }
     }
-   
   }
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+    useEffect(() => {
+        getSession().then((session) => {
+            if (session) {
+                router.replace('/');
+            } else {
+                setLoading(false);
+            }
+        });
+    }, []);
+    if (loading) {
+        return <p>Loading...</p>;
+    }
   return (
     <Flex justify="center" pb="60px" >
         <Fade in>
