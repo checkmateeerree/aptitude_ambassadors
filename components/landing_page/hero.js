@@ -110,7 +110,7 @@ Hero.propTypes = {
 Hero.defaultProps = {
   title: "Bridging the education gap through interactive guidance.",
   subtitle:
-    "We directly collaborate with teachers and students to maximize their achievement potentials.",
+    "We directly collaborate with teachers and underrepresented students to maximize their achievement potentials.",
   image: "/svgs/Online Math Class.svg",
   ctaText: "Join Today",
   ctaLink: "/register",
