@@ -13,81 +13,57 @@ import Link from "next/link";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import Program from "../../components/landing_page/summer_programs/program"
+import {getSession} from  "next-auth/client"
+import axios from "axios"
 
-const Programs = ({ programs, registerLink }) => {
+const Programs = ({ session, data }) => {
+    console.log(data)
 return (
     <Stack pb={10} spacing="10">
     <Center>
         <Heading>Summer Programs</Heading>
     </Center>
 
-    <Wrap spacing="30px" justify="center">
-        {programs.map((program) => {
-        return (
-            <Program program={program}/>
-        );
-        })}
-    </Wrap>
-    <Center>
-        <Link href={registerLink}>
-            <Button size="lg" variant="outline" colorScheme="teal">Create an Account to View Personalized Programs!</Button>
-        </Link>
-    </Center>
+    {session && (
+        <Wrap spacing="30px" justify="center">
+            {data.map((program) => {
+                return (
+                    <Program program={program} key={program.name}/>
+                );
+            })}
+        </Wrap>
+    )}
+    
+    {!session &&
+    (
+    <>
+        <Wrap spacing="30px" justify="center">
+            {data.slice(0, 6).map((program) => {
+                return (
+                    <Program program={program} key={program.name}/>
+                );
+            })}
+        </Wrap>
+        <Center>
+            <Link href="/register">
+                <Button size="lg" variant="outline" colorScheme="teal">Create an Account to View Personalized Programs!</Button>
+            </Link>
+        </Center>
+    </>
+    )
+    }
     </Stack>
 );
 };
 
 export default Programs;
 
-Programs.propTypes = {
-programs: PropTypes.array,
-registerLink: PropTypes.string
-};
+export async function getServerSideProps(context) {
+    const session = await getSession({ req: context.req });
+    const res = await axios.get("http://localhost:3000/api/programs/getprograms")
+    const data = res.data.programs
 
-Programs.defaultProps = {
-    programs: [
-        { 
-            name: "Telluride Association", 
-            logo: "/telluride-logo.png",
-            link: "https://www.tellurideassociation.org/",
-        },
-        { 
-            name: "Girls Who Code", 
-            logo: "/gwc.png", 
-            link: "https://girlswhocode.com/programs/summer-immersion-program"
-        },
-        { 
-            name: "Princeton Summer Journalism Camp", 
-            logo: "/princeton_logo.png",
-            link: "https://psjp.princeton.edu/"
-        },
-        {
-            name: "SSRP (Rockefeller University)",
-            logo: "/Rockefeller_University.png",
-            link: "https://www.rockefeller.edu/outreach/lab-initiative/summer-science/"
-        },
-        { 
-            name: "MIT MOSTEC", 
-            logo: "/mostec-logo.png",
-            link: "https://oeop.mit.edu/programs/mostec"
-        },
-        { 
-            name: "Hi-Step", 
-            logo: "/office_of_intramural.png",
-            link: "https://www.training.nih.gov/histep"
-        },
-        { 
-            name: "MIT MOSTEC", 
-            logo: "/mostec-logo.png",
-            link: "https://oeop.mit.edu/programs/mostec"
-        },
-        { 
-            name: "Monell Apprenticeship Program", 
-            logo: "/mostec-logo.png",
-            link: "https://monell.org/science-apprenticeship-program/"
-        },
-        
-            
-    ],
-    registerLink: "/register"
-};
+    return {
+        props: { session, data },
+    };
+}

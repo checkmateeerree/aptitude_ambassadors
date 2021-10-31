@@ -3,13 +3,20 @@ import Providers from 'next-auth/providers'
 import {compare} from 'bcryptjs'
 import dbConnect from '../../../utils/connectToDb';
 const User = require("../../../models/usermodel.js");
+let userAccount = null;
 
 export default NextAuth({
     //Configure JWT
     session: {
-        jwt: true
+        jwt: {
+            signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
+        }
     },
-    
+    jwt: {
+        secret: process.env.SECRET,
+        signingKey: process.env.JWT_SIGNING_PRIVATE_KEY
+    },
+
     //Specify Provider
     providers: [
         Providers.Credentials({
@@ -23,30 +30,43 @@ export default NextAuth({
                 if (!result) {
                     throw new Error('No user found with the email');
                 }
-                //Check hased password with DB password
+                //Check hased password wih DB password
                 const checkPassword = await compare(credentials.password, result.password);
                 //Incorrect password - send response
                 if (!checkPassword) {
                     throw new Error('Password doesnt match');
                 }
                 //Else send success response
-                else return {email: result.email};
+                else {
+                    userAccount = result;
+                    return result;
+                }
             },
         }),
     ],
     callbacks: {
-        async session(session, token) {
-            session.accessToken = token.accessToken;
-            session.user = token.user
-            session.user.name = "john doe"
-            return session;
-        },
-        async jwt(token, user, account, profile, isNewUser) {
-            if (user) {
-                token.accessToken = user._id;
-                token.user = user;
-            }
-            return token;
-        },
+    async session(session, token) {
+        if (userAccount !== null)
+        {
+            session.user = userAccount;
+        }
+        else if (typeof token.user !== typeof undefined && (typeof session.user === typeof undefined 
+            || (typeof session.user !== typeof undefined && typeof session.user.userId === typeof undefined)))
+        {
+            session.user = token.user;
+        }
+        else if (typeof token !== typeof undefined)
+        {
+            session.token = token;
+        }
+        return session;
     },
+    async jwt(token, user, account, profile, isNewUser) {
+        if (typeof user !== typeof undefined)
+        {
+            token.user = user;
+        }
+        return token;
+    }
+}
 });

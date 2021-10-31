@@ -22,7 +22,7 @@ const SummerPrograms = ({ programs, moreProgramsLink }) => {
       </Center>
 
       <Wrap spacing="30px" justify="center">
-        {programs.map((program) => {
+        {programs.slice(0, 3).map((program) => {
           return (
             <Program program={program} key={program.name}/>
           );
@@ -48,32 +48,32 @@ SummerPrograms.defaultProps = {
   programs: [
     { 
       name: "Telluride Association", 
-      logo: "/telluride-logo.png",
+      image: "/telluride-logo.png",
       link: "https://www.tellurideassociation.org/",
     },
     { 
       name: "Girls Who Code", 
-      logo: "/gwc.png", 
+      image: "/gwc.png", 
       link: "https://girlswhocode.com/programs/summer-immersion-program"
     },
     { 
       name: "Princeton Summer Journalism Camp", 
-      logo: "/princeton_logo.png",
+      image: "/princeton_logo.png",
       link: "https://psjp.princeton.edu/"
     },
     {
       name: "SSRP (Rockefeller University)",
-      logo: "/Rockefeller_University.png",
+      image: "/Rockefeller_University.png",
       link: "https://www.rockefeller.edu/outreach/lab-initiative/summer-science/"
     },
     { 
       name: "MIT MOSTEC", 
-      logo: "/mostec-logo.png",
+      image: "/mostec-logo.png",
       link: "https://oeop.mit.edu/programs/mostec"
     },
     { 
       name: "Hi-Step", 
-      logo: "/office_of_intramural.png",
+      image: "/office_of_intramural.png",
       link: "https://www.training.nih.gov/histep"
     }
   ],

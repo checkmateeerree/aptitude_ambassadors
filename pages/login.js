@@ -102,13 +102,6 @@ export default function Login() {
           </Stack>
           <Stack spacing="8px" mt="14px">
           <Center>
-                <Text color="teal"> 
-                  <Link href="/forgotpassword">
-                    Forgot account?
-                  </Link>
-                </Text>
-          </Center>
-          <Center>
             <Text fontSize="12px" color="grey">
            ------------------------------------ or ------------------------------------
             </Text>

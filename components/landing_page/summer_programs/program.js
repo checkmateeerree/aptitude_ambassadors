@@ -25,7 +25,7 @@ const Program = ({program}) => {
                     }}
                   >
                     <Image
-                      src={program.logo}
+                      src={program.image}
                       alt={program.name + " Logo"}
                       layout="fill"
                       objectFit="contain"
