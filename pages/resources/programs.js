@@ -15,45 +15,73 @@ import PropTypes from "prop-types";
 import Program from "../../components/landing_page/summer_programs/program"
 import {getSession} from  "next-auth/client"
 import axios from "axios"
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
 
 const Programs = ({ session, data }) => {
-    console.log(data)
-return (
-    <Stack pb={10} spacing="10">
-    <Center>
-        <Heading>Summer Programs</Heading>
-    </Center>
-
-    {session && (
-        <Wrap spacing="30px" justify="center">
-            {data.map((program) => {
-                return (
-                    <Program program={program} key={program.name}/>
-                );
-            })}
-        </Wrap>
-    )}
-    
-    {!session &&
-    (
-    <>
-        <Wrap spacing="30px" justify="center">
-            {data.slice(0, 6).map((program) => {
-                return (
-                    <Program program={program} key={program.name}/>
-                );
-            })}
-        </Wrap>
-        <Center>
-            <Link href="/register">
-                <Button size="lg" variant="outline" colorScheme="teal">Create an Account to View Personalized Programs!</Button>
-            </Link>
-        </Center>
-    </>
-    )
+    const isStemProgram = (program) => {
+        return program.type === "Stem";
     }
-    </Stack>
-);
+    const isNonStemProgram = (program) => {
+        return program.type === "Non-Stem"
+    }
+    const stemPrograms = data.filter(isStemProgram)
+    const nonStemPrograms = data.filter(isNonStemProgram)
+    return (
+        <Stack pb={10} spacing="10">
+        <Center>
+            <Heading>Summer Programs</Heading>
+        </Center>
+
+            {session && (
+                <Tabs>
+                    <TabList mx="8">
+                    <Tab>Stem Programs</Tab>
+                    <Tab>Non Stem Programs</Tab>
+                    </TabList>
+                
+                    <TabPanels pt="8">
+                        <TabPanel>
+                            <Wrap spacing="20px" justify="center">
+                                {stemPrograms.map((program) => {
+                                    return (
+                                        <Program program={program} key={program.name}/>
+                                    );
+                                })}
+                            </Wrap>
+                        </TabPanel>
+                        <TabPanel>
+                            <Wrap spacing="20px" justify="center">
+                                {nonStemPrograms.map((program) => {
+                                    return (
+                                        <Program program={program} key={program.name}/>
+                                    );
+                                })}
+                            </Wrap>
+                        </TabPanel>
+                    </TabPanels>
+              </Tabs>
+            )}
+            
+            {!session &&
+            (
+            <>
+                <Wrap spacing="30px" justify="center">
+                    {data.slice(0, 6).map((program) => {
+                        return (
+                            <Program program={program} key={program.name}/>
+                        );
+                    })}
+                </Wrap>
+                <Center>
+                    <Link href="/register">
+                        <Button size="lg" variant="outline" colorScheme="teal">Create an Account to View More Personalized Programs!</Button>
+                    </Link>
+                </Center>
+            </>
+            )
+            }
+        </Stack>
+    );
 };
 
 export default Programs;

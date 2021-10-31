@@ -22,7 +22,7 @@ const SummerPrograms = ({ programs, moreProgramsLink }) => {
       </Center>
 
       <Wrap spacing="30px" justify="center">
-        {programs.slice(0, 3).map((program) => {
+        {programs.slice(0, 4).map((program) => {
           return (
             <Program program={program} key={program.name}/>
           );
