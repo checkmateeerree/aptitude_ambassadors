@@ -1,5 +1,5 @@
 import Hero from "../components/landing_page/hero";
-import SummerPrograms from "../components/landing_page/summer_programs";
+import SummerPrograms from "../components/landing_page/summer_programs/summer_programs";
 import Mission from "../components/landing_page/mission";
 import WorkingWithTeachers from "../components/landing_page/workwithteachers";
 import WorkingWithStudents from "../components/landing_page/workingwithstudents";
