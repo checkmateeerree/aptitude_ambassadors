@@ -60,7 +60,7 @@ export default Programs;
 
 export async function getServerSideProps(context) {
     const session = await getSession({ req: context.req });
-    const res = await axios.get("http://localhost:3000/api/programs/getprograms")
+    const res = await axios.get("aptitudeamplifiers/api/programs/getprograms")
     const data = res.data.programs
 
     return {
