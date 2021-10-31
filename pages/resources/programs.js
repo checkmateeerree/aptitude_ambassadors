@@ -66,7 +66,7 @@ const Programs = ({ session, data }) => {
             (
             <>
                 <Wrap spacing="30px" justify="center">
-                    {data.slice(0, 6).map((program) => {
+                    {data.slice(0, 8).map((program) => {
                         return (
                             <Program program={program} key={program.name}/>
                         );
