@@ -27,6 +27,7 @@ import { getSession } from 'next-auth/client';
 import {useEffect, useState} from 'react'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
 import { Select } from "@chakra-ui/react"
+import { Checkbox, CheckboxGroup } from "@chakra-ui/react"
 
 export default function Register() {
   
@@ -57,9 +58,12 @@ export default function Register() {
   const [name, setName] = useState()
   const [grade, setGrade] = useState()
   const [incomeBracket, setIncomeBracket] = useState()
-  const [interests, setInterests] = useState([])
+  const [interests, setInterests] = useState([false, false, false, false, false, false, false, false])
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
+
+  const allChecked = interests.every(Boolean)
+  const isIndeterminate = interests.some(Boolean) && !allChecked
 
   const handleNameChange = ({target}) => {
     setName(target.value)
@@ -70,10 +74,6 @@ export default function Register() {
 
   const handleIncomeBracketChange = ({target}) => {
     setIncomeBracket(target.value)
-  }
-
-  const handleInterestsChange = ({target}) => {
-    setInterests(target.value)
   }
 
   const handleEmailChange = ({target}) => {
@@ -192,7 +192,77 @@ export default function Register() {
                     <FormLabel>
                       Interests
                     </FormLabel>
-                    <Input type="text" placeholder="Your Interests" required onChange={handleInterestsChange}/>
+                    <Checkbox
+                        isChecked={allChecked}
+                        isIndeterminate={isIndeterminate}
+                        onChange={(e) => setInterests([e.target.checked, e.target.checked, e.target.checked, e.target.checked, e.target.checked, ])}
+                      >
+                        STEM
+                      </Checkbox>
+                      <Stack pl={6} mt={1} spacing={1}>
+                        <Checkbox
+                          isChecked={interests[0]}
+                          onChange={(e) => setInterests([e.target.checked, interests[1], interests[2], interests[3], interests[4]])}
+                        >
+                          Computer Science
+                        </Checkbox>
+                        <Checkbox
+                          isChecked={interests[1]}
+                          onChange={(e) => setInterests([interests[0], e.target.checked,interests[2],interests[3], interests[4],  ])}
+                        >
+                          Medicine
+                        </Checkbox>
+                        <Checkbox
+                          isChecked={interests[2]}
+                          onChange={(e) => setInterests([interests[0], interests[1], e.target.checked, interests[3],interests[4], ])}
+                        >
+                          Math
+                        </Checkbox>
+                        <Checkbox
+                          isChecked={interests[3]}
+                          onChange={(e) => setInterests([interests[0],  interests[1], interests[2], e.target.checked, interests[4]])}
+                        >
+                          Engineering
+                        </Checkbox>
+                        <Checkbox
+                          isChecked={interests[4]}
+                          onChange={(e) => setInterests([interests[0], interests[1], interests[2], interests[3], e.target.checked])}
+                        >
+                          Science
+                        </Checkbox>
+                      </Stack>
+                      <Checkbox
+                       
+                       
+                      >
+                        Non-STEM
+                      </Checkbox>
+                      <Stack pl={6} mt={1} spacing={1}>
+                        <Checkbox
+                          //isChecked={interests[0]}
+                          //onChange={(e) => setInterests([e.target.checked, interests[1], interests[2], interests[3], interests[4]])}
+                        >
+                          Writing
+                        </Checkbox>
+                        <Checkbox
+                          //isChecked={interests[1]}
+                          //onChange={(e) => setInterests([interests[0], e.target.checked,interests[2],interests[3], interests[4],  ])}
+                        >
+                          Business
+                        </Checkbox>
+                        <Checkbox
+                          //isChecked={interests[2]}
+                          //onChange={(e) => setInterests([interests[0], interests[1], e.target.checked, interests[3],interests[4], ])}
+                        >
+                          Leadership
+                        </Checkbox>
+                        <Checkbox
+                          //isChecked={interests[3]}
+                         // onChange={(e) => setInterests(interests[0],  interests[1], interests[2], e.target.checked, interests[4])}
+                        >
+                          Liberal Arts
+                        </Checkbox>
+                      </Stack>
                   </FormControl>
                   <Button colorScheme="blue" onClick={() => setTabIndex(2)}>Continue</Button>
                 </Stack>

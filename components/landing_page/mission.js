@@ -100,7 +100,7 @@ Mission.defaultProps = {
   title: "Our mission",
   subtitle:
     "We are strengthening the pipeline that identifies high-potential underrepresented students in humanities and STEM by providing specific opportunities to develop their interests, preparing them to traverse the world in a country with a massively broken education system.",
-  image: "/svgs/process_req.svg",
+  image: "/svgs/Splendid reviews in background check.svg",
   ctaText: "Learn More",
   ctaLink: "/about"
 };
