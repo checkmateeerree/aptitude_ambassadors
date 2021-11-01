@@ -98,6 +98,14 @@ export default function Navbar() {
                 <Link href="/resources/essays">
                   <MenuItem>Sample Essays</MenuItem>
                 </Link>
+                {
+                  session && 
+                  (
+                  <Link href="/resources/essayguide">
+                    <MenuItem>Application Essay Writing Guide</MenuItem>
+                  </Link>
+                  )
+                }
               </MenuList>
             </Menu>
           </Flex>
