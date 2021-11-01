@@ -14,6 +14,7 @@ import {getSession} from  "next-auth/client"
 import axios from "axios"
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
 import Essay from "../../components/essay/essay";
+import { getSession } from "next-auth/client";
 
 const Essays = ({ session, data }) => {
     const isSummerEssay = (essay) => {
