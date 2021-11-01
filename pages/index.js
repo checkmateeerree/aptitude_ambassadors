@@ -62,7 +62,7 @@ function Index({session}) {
                     Sample Application Essays
                   </Button>
                 </Link>
-                <Link href="/resources/resources/essayguide">
+                <Link href="/resources/essayguide">
                   <Button colorScheme="yellow">
                     Application Essay Writing Guide
                   </Button>
