@@ -25,9 +25,23 @@ import { useToast } from "@chakra-ui/toast";
 import { useRouter } from 'next/router';
 import { getSession } from 'next-auth/client';
 import {useEffect, useState} from 'react'
-
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
+import { Select } from "@chakra-ui/react"
 
 export default function Register() {
+  
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+    useEffect(() => {
+        getSession().then((session) => {
+            if (session) {
+                router.replace('/');
+            } else {
+                setLoading(false);
+            }
+        });
+    }, []);
+  
   const toast = useToast();
 
   const createToast = (title, description, status) => {
@@ -39,8 +53,28 @@ export default function Register() {
         isClosable: true
       })
   }
+
+  const [name, setName] = useState()
+  const [grade, setGrade] = useState()
+  const [incomeBracket, setIncomeBracket] = useState()
+  const [interests, setInterests] = useState([])
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
+
+  const handleNameChange = ({target}) => {
+    setName(target.value)
+  }
+  const handleGradeChange = ({target}) => {
+    setGrade(target.value)
+  }
+
+  const handleIncomeBracketChange = ({target}) => {
+    setIncomeBracket(target.value)
+  }
+
+  const handleInterestsChange = ({target}) => {
+    setInterests(target.value)
+  }
 
   const handleEmailChange = ({target}) => {
     setEmail(target.value)
@@ -51,10 +85,17 @@ export default function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    if (!name || !grade || !email || !password || !incomeBracket || !interests){
+      return createToast("Registration failed.", "Please enter all of the required fields", "error")
+    }
     try {
-      const res = await axios.post('/api/auth/register', {
-        email: email,
-        password: password,
+      await axios.post('/api/auth/register', {
+        email,
+        password,
+        grade,
+        incomeBracket,
+        interests,
+        name
       }
     );
       createToast("Registration succeeded!", "Your account has been created", "success")
@@ -73,54 +114,136 @@ export default function Register() {
       }
     }
   }
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
-    useEffect(() => {
-        getSession().then((session) => {
-            if (session) {
-                router.replace('/');
-            } else {
-                setLoading(false);
-            }
-        });
-    }, []);
-    if (loading) {
-        return <p>Loading...</p>;
-    }
+  const [tabIndex, setTabIndex] = useState(0)
+  if (loading) {
+    return <p>Loading...</p>;
+  }
   return (
     <Flex justify="center" pb="60px" >
         <Fade in>
           <Box width="450px" shadow="2xl" rounded="1rem" p="50px 40px">
-          <Stack spacing="30px" >
-            <Heading size="md" mx="auto">Create a New Account</Heading>
-            <FormControl id="email">
-              <FormLabel>
-                Email
-              </FormLabel>
-              <Input type="email" placeholder="Your Email" required onChange={handleEmailChange}/>
-            </FormControl>
-            <FormControl id="password">
-              <FormLabel>
-                Password
-              </FormLabel>
-              <Input type="password" placeholder="Your Password" required onChange={handlePasswordChange}/>
-            </FormControl>
-            <Button colorScheme="blue" onClick={handleSubmit}>Create New Account</Button>
-          </Stack>
-          <Stack spacing="8px" mt="14px">
-          <Center>
-            <Text fontSize="12px" color="grey">
-           ------------------------------------ or ------------------------------------
-            </Text>
-          </Center>
-          <Center pt="1.5">
-            <Link href="/login">
-              <Button colorScheme="green" width="450px">
-                 Log In
-              </Button>
-            </Link>
-          </Center>
-          </Stack>
+          <Heading size="md" pb="5" mx="auto">Create a New Account</Heading>
+          <Tabs index={tabIndex} onChange={(index) => setTabIndex(index)}>
+            <TabList>
+              <Tab>
+                1
+              </Tab>
+              <Tab>
+                2
+              </Tab>
+              <Tab>
+                3
+              </Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+              <Stack spacing="30px" >     
+                  <FormControl id="name">
+                    <FormLabel>
+                      Name
+                    </FormLabel>
+                    <Input type="text" placeholder="Your Name" required onChange={handleNameChange}/>
+                  </FormControl>
+                  <FormControl id="Grade">
+                    <FormLabel>
+                      Graduating Year
+                    </FormLabel>
+                    <Select placeholder="Highschool Graduation Year" onChange={handleGradeChange}>
+                      <option value="2022">2022</option>
+                      <option value="2023">2023</option>
+                      <option value="2024">2024</option>
+                      <option value="2025">2025</option>
+                      <option value="2026">2026+</option>
+                    </Select>
+                  </FormControl>
+                  <Button colorScheme="blue" onClick={() => setTabIndex(1)}>Continue</Button>
+                  
+                </Stack>
+                <Stack spacing="8px" mt="14px">
+                <Center>
+                  <Text fontSize="12px" color="grey">
+                  ------------------------------ or -------------------------------
+                  </Text>
+                </Center>
+                <Center pt="1.5">
+                  <Link href="/login">
+                    <Button colorScheme="green" width="450px">
+                      Log In
+                    </Button>
+                  </Link>
+                </Center>
+                </Stack>
+              </TabPanel>
+              <TabPanel>
+              <Stack spacing="30px" >     
+                  <FormControl id="name">
+                    <FormLabel>
+                      Income Bracket
+                    </FormLabel>
+                    <Select placeholder="Income Bracket" onChange={handleIncomeBracketChange}>
+                      <option value="poor">$0-$29,999</option>
+                      <option value="lower-middle">$30,00-$49,999</option>
+                      <option value="middle">$50,000-$99,999</option>
+                      <option value="upper-middle">$100,000-$399,999</option>
+                      <option value="rich">$400,000+</option>
+                    </Select>
+                  </FormControl>
+                  <FormControl id="Grade">
+                    <FormLabel>
+                      Interests
+                    </FormLabel>
+                    <Input type="text" placeholder="Your Interests" required onChange={handleInterestsChange}/>
+                  </FormControl>
+                  <Button colorScheme="blue" onClick={() => setTabIndex(2)}>Continue</Button>
+                </Stack>
+                <Stack spacing="8px" mt="14px">
+                <Center>
+                  <Text fontSize="12px" color="grey">
+                  ------------------------------ or -------------------------------
+                  </Text>
+                </Center>
+                <Center pt="1.5">
+                  <Link href="/login">
+                    <Button colorScheme="green" width="450px">
+                      Log In
+                    </Button>
+                  </Link>
+                </Center>
+                </Stack>
+              </TabPanel>
+              <TabPanel>
+                <Stack spacing="30px" >     
+                  <FormControl id="email">
+                    <FormLabel>
+                      Email
+                    </FormLabel>
+                    <Input type="email" placeholder="Your Email" required onChange={handleEmailChange}/>
+                  </FormControl>
+                  <FormControl id="password">
+                    <FormLabel>
+                      Password
+                    </FormLabel>
+                    <Input type="password" placeholder="Your Password" required onChange={handlePasswordChange}/>
+                  </FormControl>
+                  <Button colorScheme="blue" onClick={handleSubmit}>Create New Account</Button>
+                </Stack>
+                <Stack spacing="8px" mt="14px">
+                <Center>
+                  <Text fontSize="12px" color="grey">
+                  ------------------------------ or -------------------------------
+                  </Text>
+                </Center>
+                <Center pt="1.5">
+                  <Link href="/login">
+                    <Button colorScheme="green" width="450px">
+                      Log In
+                    </Button>
+                  </Link>
+                </Center>
+                </Stack>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
           </Box>
         </Fade>
     </Flex>

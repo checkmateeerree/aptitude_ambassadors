@@ -8,9 +8,9 @@ async function handler(req, res) {
     //Only POST mothod is accepted
     if (req.method === 'POST') {
         //Getting email and password from body
-        const { email, password } = req.body;
+        const { email, password, grade, incomeBracket, interests, name } = req.body;
         //Validate
-        if (!email || !email.includes('@') || !password) {
+        if (!email || !email.includes('@') || !password || !name || !incomeBracket || !interests || !grade) {
             res.status(423).json({ message: 'Invalid Data' });
             return;
         }
@@ -26,8 +26,11 @@ async function handler(req, res) {
         //Hash password
         else {
             user = new User({
-                name: "john doe",
-                email: email,
+                name,
+                email,
+                grade,
+                incomeBracket,
+                interests,
                 password: await hash(password, 12)
             });
             await user.save();
