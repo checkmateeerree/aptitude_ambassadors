@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/layout'
 import React from 'react'
+import { getSession } from 'next-auth/client'
 
 const EssayGuide = (session) => {
     return (

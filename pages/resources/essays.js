@@ -10,7 +10,6 @@ Box
 } from "@chakra-ui/react";
 import React from "react";
 import Link from "next/link";
-import {getSession} from  "next-auth/client"
 import axios from "axios"
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
 import Essay from "../../components/essay/essay";
