@@ -1,15 +1,15 @@
 // This is an example of how to read a JSON Web Token from an API route
 
 import dbConnect from "../../../utils/connectToDb"
-import SummerProgram from "../../../models/summerprogrammodel"
+import Essay from "../../../models/essaymodel"
 
 export default async (req, res) => {
   if (req.method === 'GET'){
-    //remember to add autehtnication
+
     await dbConnect();
 
-    const programs = await SummerProgram.find({});
-    return res.status(200).json({programs})
+    const essays = await Essay.find({});
+    return res.status(200).json({essays})
 }
  else {
     return res.status(400).json({message: "Bad request"})
