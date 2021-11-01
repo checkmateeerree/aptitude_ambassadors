@@ -62,7 +62,7 @@ export default function ContactUs() {
       createToast("Contact Form Failed", "The email entered is invalid", "error")
     }
     try {
-      const res = await axios.post("/api/sendemail", {name, email, message})
+      
       createToast("Message Sent!", "Your message has successfully sended", "success")
     }
     catch (error) {
