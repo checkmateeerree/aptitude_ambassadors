@@ -62,7 +62,7 @@ export default function ContactUs() {
       createToast("Contact Form Failed", "The email entered is invalid", "error")
     }
     try {
-      
+      //const res = await axios.post("/api/sendemail", {name, email, message})
       createToast("Message Sent!", "Your message has successfully sended", "success")
     }
     catch (error) {
@@ -76,7 +76,7 @@ export default function ContactUs() {
   return (
     <Stack>
     <Flex justify="center" pb="60px">
-      <Box width={{lg: "850px"}} shadow="2xl" rounded="1rem" p="40px 50px">
+      <Box width={{lg: "900px"}} shadow="2xl" rounded="1rem" p="40px 50px">
       <Wrap
         direction={{ base: "column", md: "row", lg: "row" }}
         spacing={{ base: "30px", md: "150px", lg: "200px" }}
@@ -109,11 +109,11 @@ export default function ContactUs() {
           >
             <Text>Based in New Jersey</Text>
             <Text>
-              <PhoneIcon mr="10px" /> 123-456-7890
+              <PhoneIcon mr="10px" /> 973-610-3610
             </Text>
             <Text>
               <EmailIcon mr="10px" />
-              aptitude@email.com
+              aptitudeamplifiers@outlook.com
             </Text>
             <Wrap spacing="20px">
               <IconButton aria-label="Twitter Icon" icon={<FaTwitter />} />

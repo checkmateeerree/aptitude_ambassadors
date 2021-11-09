@@ -29,13 +29,13 @@ function Index({session}) {
     <>
       {session && (
         <Box>
-          <Flex justify="center" pb="30px">
+          <Flex justify="center" pb="70px">
             <VStack spacing="20px">
               <Heading>Connect with a mentor</Heading>
-              <Text fontSize="md">
+              <Text fontSize="18px">
                 Want a mentor? Request one by clicking the button down below, for free. 
               </Text>
-              <Button colorScheme="blue" onClick={handleMentorRequest}>
+              <Button colorScheme="blue" variant="outline" onClick={handleMentorRequest}>
                 Ask for mentor
               </Button>
             </VStack>
@@ -43,8 +43,8 @@ function Index({session}) {
           <Flex justify="center" py="30px" bgColor="gray.200">
             <VStack spacing="20px">
               <Heading>Resources</Heading>
-              <Text fontSize="md">
-                Find all of our resources down below!
+              <Text fontSize="18px">
+                Find all of our other resources down below!
               </Text>
               <Wrap justify="center" px="20px">
                 <a href="https://www.teachthought.com/technology/100-free-online-resources-for-students/">
