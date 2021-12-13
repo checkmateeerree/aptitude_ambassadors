@@ -1,4 +1,4 @@
-import { Heading, Flex, Text, VStack, Center, Stack } from "@chakra-ui/react";
+import { Heading, Flex, Text, VStack, Center, Box, Wrap} from "@chakra-ui/react";
 
 export default function About() {
   return (
@@ -12,6 +12,21 @@ export default function About() {
               students. 
             </Text>
           </Center>
+          <Heading textAlign="center" borderBottom="1px solid" pb="3" width="400px" size="md">Who We Are</Heading>
+          <Wrap spacing="30px" justify="center">
+              <Box>
+                <Text fontWeight="bold" fontSize="18">Warren Wu - Co-founder</Text>
+              </Box>
+              <Box>
+              <Text fontWeight="bold"  fontSize="18">Alex Li - Co-founder</Text>
+              </Box>
+              <Box>
+              <Text fontWeight="bold"  fontSize="18">Matthew Wang - Outreach Director/Lead Mentor</Text>
+              </Box>
+              <Box>
+              <Text fontWeight="bold"  fontSize="18">Alan Hu - Content Director/Website &#38; App Developer</Text>
+              </Box>
+          </Wrap>
           <Heading textAlign="center" borderBottom="1px solid" pb="3" width="400px" size="md">Our Mission</Heading>
           <Text textAlign="center">
             Aptitude Amplifiers strengthens the pipeline that identifies high-potential underrepresented students in humanities and STEM by providing opportunities to develop their interests, giving them a leg up to navigate America's broken education system.
