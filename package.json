@@ -24,7 +24,7 @@
     "next-auth": "^3.29.0",
     "next-themes": "^0.2.1",
     "node-jose-tools": "^1.6.28",
-    "react": "17.0.2",
+    "react": "17.0.2", 
     "react-dom": "17.0.2",
     "react-icons": "^4.3.1",
     "sendgrid": "^5.2.3",
