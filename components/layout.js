@@ -7,7 +7,7 @@ function Layout({ children }) {
   return (
     <div style={{ overflow: "hidden" }}>
       <Navbar />
-        <Box pt="150px" bgColor="white">{children}</Box>
+        <Box pt="150px">{children}</Box>
       <Footer />
     </div>
   );

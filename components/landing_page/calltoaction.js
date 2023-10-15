@@ -5,7 +5,7 @@ import React from "react";
 
 export default function CallToAction() {
   return (
-    <Flex bgColor="#F5F5F5" px={4} py={16} justify="center">
+    <Flex px={4} py={16} justify="center">
         <Stack>
         <Text fontSize={{ base: "md", md: "xl", lg: "2xl" }} my="auto" fontWeight="medium">
             Sign up to our website to access our online resources and features!

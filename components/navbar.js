@@ -3,7 +3,9 @@ import Link from "next/link";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { signOut, useSession } from 'next-auth/client';
 import { Box, Flex, Text, Button, Heading, Menu, Center, MenuButton, MenuList, MenuItem} from "@chakra-ui/react";
-
+import { useColorMode } from "@chakra-ui/react";
+import { SunIcon, MoonIcon} from '@chakra-ui/icons'
+import { useColorModeValue } from "@chakra-ui/react";
 
 const MenuIt = ({ children, isLast, to = "/", ...rest }) => {
   return (
@@ -18,22 +20,22 @@ const MenuIt = ({ children, isLast, to = "/", ...rest }) => {
   );
 };
 
-const CloseIcon = () => (
+const CloseIcon = ({fillColor}) => (
   <svg width="24" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
     <title>Close</title>
     <path
-      fill="black"
+      fill={fillColor}
       d="M9.00023 7.58599L13.9502 2.63599L15.3642 4.04999L10.4142 8.99999L15.3642 13.95L13.9502 15.364L9.00023 10.414L4.05023 15.364L2.63623 13.95L7.58623 8.99999L2.63623 4.04999L4.05023 2.63599L9.00023 7.58599Z"
     />
   </svg>
 );
 
-const MenuIcon = () => (
+const MenuIcon = ({fillColor}) => (
   <svg
     width="24px"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
-    fill="black"
+    fill={fillColor}
   >
     <title>Menu</title>
     <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
@@ -44,6 +46,8 @@ export default function Navbar() {
   const [show, setShow] = React.useState(false);
   const toggleMenu = () => setShow(!show);
   const [session, loading] = useSession()
+  const {colorMode, toggleColorMode} = useColorMode()
+  const bg = useColorModeValue("white", "black")
 
   return (
     <Flex
@@ -57,8 +61,8 @@ export default function Navbar() {
       mb={8}
       p={8}
       shadow="base"
-      bg={["white", "white", "white", "white"]}
-      color={["black", "black", "primary.700", "primary.700"]}
+      bg={bg}
+      //color={["black", "black", "primary.700", "primary.700"]}
     >
       <Flex align="center">
         <Heading size="md">
@@ -66,8 +70,8 @@ export default function Navbar() {
         </Heading>
       </Flex>
 
-      <Box display={{ base: "block", lg: "none" }} onClick={toggleMenu}>
-        {show ? <CloseIcon /> : <MenuIcon />}
+      <Box display={{ base: "block", lg: "none" }} onClick={toggleMenu} color="white">
+        {show ? <CloseIcon fillColor={colorMode==="light"? "black": "white"}/> : <MenuIcon fillColor={colorMode==="light"? "black": "white"}/>}
       </Box>
 
       <Box
@@ -138,7 +142,14 @@ export default function Navbar() {
             </>
             )
           }
+         
+          <Button onClick={toggleColorMode} marginX={5}>
+            {colorMode === 'light' ? <MoonIcon/>: <SunIcon />}
+          </Button>
+       
+          
         </Flex>
+        
       </Box>
     </Flex>
   );
