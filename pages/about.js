@@ -17,11 +17,12 @@ export default function About() {
               <Box>
                 <Text fontWeight="bold" fontSize="18">Warren Wu - Co-founder</Text>
               </Box>
+            
               <Box>
-              <Text fontWeight="bold"  fontSize="18">Alex Li - Co-founder</Text>
+              <Text fontWeight="bold"  fontSize="18">Ryan Whalen - Program Director/Lead Mentor</Text>
               </Box>
               <Box>
-              <Text fontWeight="bold"  fontSize="18">Matthew Wang - Outreach Director/Lead Mentor</Text>
+              <Text fontWeight="bold"  fontSize="18">Eddie Mendel - Outreach Director/Junior Mentor</Text>
               </Box>
               <Box>
               <Text fontWeight="bold"  fontSize="18">Alan Hu - Content Director/Website &#38; App Developer</Text>
